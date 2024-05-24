@@ -1,0 +1,6 @@
+<app-add-task></app-add-task>
+<ul>
+  <li *ngFor="let task of tasks$ | async">
+    <app-task-item></app-task-item>
+  </li>
+</ul>
