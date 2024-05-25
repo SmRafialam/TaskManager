@@ -1,6 +1,11 @@
-<div>
+<!-- <div>
     <input type="checkbox"  (change)="toggleComplete()">
     <span [ngClass]="{ 'completed': task.completed }">{{ task.title }}</span>
     <button (click)="deleteTask()">Delete</button>
   </div>
+-->
+
+  <td>{{ task.title }}</td>
+  <td><input id="myCheckbox" type="checkbox" [checked]="task.isCompleted" (change)="toggleTask()"></td>
+  <td><button class="btn btn-danger btn-sm m-2" (click)="deleteTask()">Delete</button></td>
   

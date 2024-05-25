@@ -16,7 +16,6 @@ export class TaskService {
     return tasks ? JSON.parse(tasks) : [];
   }
 
-
   saveTasks(tasks: Task[]): void {
     localStorage.setItem('tasks', JSON.stringify(tasks));
   }
@@ -27,7 +26,7 @@ export class TaskService {
 
   addTask(title: string): void {
     const tasks = this.getTasks();
-    const newTask: Task = { id: Date.now(), title, completed: false };
+    const newTask: Task = { id: Date.now(), title, isCompleted: false };
     tasks.push(newTask);
     this.saveTasks(tasks);
     this.taskSubject.next(tasks);
@@ -35,7 +34,7 @@ export class TaskService {
 
   completeTask(id: number): void {
     const tasks = this.getTasks().map(task =>
-      task.id === id ? { ...task, completed: !task.completed } : task
+      task.id === id ? { ...task, isCompleted: !task.isCompleted } : task
     );
     this.saveTasks(tasks);
     this.taskSubject.next(tasks);

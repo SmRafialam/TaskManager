@@ -1,6 +1,42 @@
-<app-add-task></app-add-task>
-<ul>
+<!-- <app-add-task></app-add-task> -->
+<!-- <ul>
   <li *ngFor="let task of tasks$ | async">
     <app-task-item></app-task-item>
   </li>
-</ul>
+</ul> -->
+
+<div class="container">
+  <div>
+    <button (click)="setFilterOption('all')">All</button>
+    <button (click)="setFilterOption('completed')">Completed</button>
+    <button (click)="setFilterOption('incomplete')">Incomplete</button>
+  </div>
+  
+  <app-add-task></app-add-task>
+  <table class="table">
+    <thead>
+      <tr>
+        <th scope="col">Task</th>
+        <th scope="col">Completed</th>
+        <th scope="col">Delete</th>
+      </tr>
+    </thead>
+    <tbody>
+      <!-- <tr>
+        <td>Mark</td>
+        <td><input id="myCheckbox" type="checkbox"></td>
+        <td><button class="btn btn-danger btn-sm">Delete</button></td>
+      </tr> -->
+      <!-- <tr *ngFor="let task of tasks">
+        <app-task-item [task]="task"
+                       (taskDeleted)="deleteTask(task.id)"
+        ></app-task-item>
+      </tr> -->
+      <tr *ngFor="let task of filteredTasks">
+        <!-- <ng-container *ngIf="task"> -->
+          <app-task-item [task]="task" (taskDeleted)="deleteTask($event)" (taskToggled)="toggleTask($event)"></app-task-item>
+        <!-- </ng-container> -->
+      </tr>
+    </tbody>
+  </table>
+</div>

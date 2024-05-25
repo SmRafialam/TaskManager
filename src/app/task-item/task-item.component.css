@@ -1,4 +1,11 @@
 .completed {
     text-decoration: line-through;
   }
-  
+
+#myCheckbox {
+    margin-left: 30px;
+}
+
+td {
+  vertical-align: middle;
+}

@@ -7,7 +7,8 @@ import { TaskListComponent } from './task-list/task-list.component';
 import { TaskItemComponent } from './task-item/task-item.component';
 import { AddTaskComponent } from './add-task/add-task.component';
 import { TaskService } from './services/task.service';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -19,7 +20,9 @@ import { FormsModule } from '@angular/forms';
   imports: [
     BrowserModule,
     FormsModule,  // Ensure FormsModule is imported here
-    AppRoutingModule
+    ReactiveFormsModule,
+    AppRoutingModule,
+    BrowserAnimationsModule
   ],
   providers: [TaskService],
   bootstrap: [AppComponent]

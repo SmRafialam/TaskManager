@@ -1,5 +1,17 @@
-<div>
-    <input placeholder="New task">
-    <button (click)="addTask()">Add Task</button>
-  </div>
-  
+<div class="container">
+  <!-- <input [(ngModel)]="title" placeholder="New task">
+  <button (click)="addTask()">Add Task</button> -->
+  <h1>Task Manager</h1>
+
+  <form [formGroup]="taskForm" (ngSubmit)="onSubmitTask()">
+    <div class="mb-3">
+      <label for="task" class="form-label">Add Task</label>
+      <input type="text" class="form-control" formControlName="title" id="task" placeholder="Enter Task">
+      <!-- <small id="errorMessage" class="form-text text-danger">Required field</small>  -->
+    </div>
+
+    <button id="submitBtn" type="submit" class="btn btn-primary btn-sm" [disabled]="taskForm.invalid">Submit Task</button>
+  </form>
+  <hr>
+</div>
+

@@ -1,5 +1,6 @@
-import { Component, Input } from '@angular/core';
+import { Component, EventEmitter, Input, Output } from '@angular/core';
 import { TaskService } from '../services/task.service';
+import { Task } from '../model/task';
 
 @Component({
   selector: 'app-task-item',
@@ -7,15 +8,22 @@ import { TaskService } from '../services/task.service';
   styleUrls: ['./task-item.component.css']
 })
 export class TaskItemComponent {
-  @Input() task: any;
+  @Input() task!: Task;
+  @Output() taskDeleted = new EventEmitter<number>();
+  @Output() taskToggled = new EventEmitter<number>();
+  tasks: Task[] = [];
 
-  constructor(private taskService: TaskService) { }
+  constructor(private taskService: TaskService) {}
 
-  toggleComplete(): void {
-    this.taskService.completeTask(this.task.id);
+  ngOnInit(): void {
+    this.taskService.tasks$.subscribe(tasks => this.tasks = tasks);
+  }
+
+  toggleTask(): void {
+    this.taskToggled.emit(this.task.id);
   }
 
   deleteTask(): void {
-    this.taskService.deleteTask(this.task.id);
+    this.taskDeleted.emit(this.task.id);
   }
 }
